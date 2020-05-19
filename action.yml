@@ -14,16 +14,16 @@ outputs:
     description: 'compileSdkVersion'
   compileSdkVersionCodename:
     description: 'compileSdkVersionCodename'
-  package:
-    description: 'package'
+  packageName:
+    description: 'packageName'
   usesPermissions:
     description: 'usesPermissions'
   minSdkVersion:
     description: 'minSdkVersion'
   targetSdkVersion:
     description: 'targetSdkVersion'
-  label:
-    description: 'label'
+  applicationLabel:
+    description: 'applicationLabel'
   debuggable:
     description: 'debuggable'
   allowBackup:
