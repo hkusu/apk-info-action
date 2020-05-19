@@ -397,43 +397,28 @@ exports.default = crc32;
 /***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
 
 const core = __webpack_require__(470);
-const wait = __webpack_require__(949);
+const ApkParser = __webpack_require__(795);
 
-const AppInfoParser = __webpack_require__(795);
-
-
-// most @actions toolkit packages have async methods
 async function run() {
   try { 
-/*
-    const ms = core.getInput('milliseconds');
-    console.log(`Waiting ${ms} milliseconds ...`)
-
-    core.debug((new Date()).toTimeString())
-    await wait(parseInt(ms));
-    core.debug((new Date()).toTimeString())
-
-    core.setOutput('time', new Date().toTimeString());
-*/
-
     const apkPath = core.getInput('apkPath');
 
-    console.log(apkPath);
+    const parser = new ApkParser('./app-debug.apk');
 
-    const parser = new AppInfoParser(apkPath);// or xxx.ipa
-    parser.parse().then(result => {
+    const result = await parser.parse();
 
-        core.setOutput("versionCode", result.versionCode);
-        core.setOutput("versionNum", result.versionName);
-        core.setOutput("applicationId", result.package);
-        core.setOutput("name", result.application.label);
-        console.log('app info ----> ', result);
-
-    }).catch(err => {
-        console.log('err ----> ', err)
-    });
-
-
+    core.setOutput("versionCode", result.versionCode);
+    core.setOutput("versionName", result.versionName);
+    core.setOutput("compileSdkVersion", result.compileSdkVersion);
+    core.setOutput("compileSdkVersionCodename", result.compileSdkVersionCodename);
+    core.setOutput("package", result.package);
+    core.setOutput("usesPermissions", JSON.stringify(result.usesPermissions.map(item => item.name)));
+    core.setOutput("minSdkVersion", result.usesSdk.minSdkVersion);
+    core.setOutput("targetSdkVersion", result.usesSdk.targetSdkVersion);
+    core.setOutput("label", result.application.label);
+    core.setOutput("debuggable", result.application.debuggable);
+    core.setOutput("allowBackup", result.application.allowBackup);
+    core.setOutput("supportsRtl", result.application.supportsRtl);
   }
   catch (error) {
     core.setFailed(error.message);
@@ -17253,24 +17238,6 @@ var crcjam = (0, _define_crc2.default)('jam', function (buf) {
 });
 
 exports.default = crcjam;
-
-
-/***/ }),
-
-/***/ 949:
-/***/ (function(module) {
-
-let wait = function(milliseconds) {
-  return new Promise((resolve, reject) => {
-    if (typeof(milliseconds) !== 'number') { 
-      throw new Error('milleseconds not a number'); 
-    }
-
-    setTimeout(() => resolve("done!"), milliseconds)
-  });
-}
-
-module.exports = wait;
 
 
 /***/ }),
