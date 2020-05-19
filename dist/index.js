@@ -402,9 +402,7 @@ const ApkParser = __webpack_require__(795);
 async function run() {
   try { 
     const apkPath = core.getInput('apkPath');
-
-    const parser = new ApkParser('./app-debug.apk');
-
+    const parser = new ApkParser(apkPath);
     const result = await parser.parse();
 
     core.setOutput("versionCode", result.versionCode);
