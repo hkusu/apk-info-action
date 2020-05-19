@@ -23,6 +23,7 @@ async function run() {
     console.log(apkPath);
 
     const parser = new AppInfoParser(apkPath);// or xxx.ipa
+/*
     parser.parse().then(result => {
 
         core.setOutput("versionCode", result.versionCode);
@@ -34,6 +35,15 @@ async function run() {
     }).catch(err => {
         console.log('err ----> ', err)
     });
+*/
+    const result = await parser.parse();
+
+    core.setOutput("versionCode", result.versionCode);
+    core.setOutput("versionNum", result.versionName);
+    core.setOutput("applicationId", result.package);
+    core.setOutput("name", result.application.label);
+
+    core.setOutput("result", result);
 
 
   }
