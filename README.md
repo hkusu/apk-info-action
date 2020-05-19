@@ -30,10 +30,10 @@ See Useage.
     echo "::set-output name=path::$path"
 - name: Get apk info
   id: apk-info
-  uses: hkusu/apk-info-action@master
+  uses: hkusu/apk-info-action@v0.1.0
   with:
     apkPath: ${{ steps.apk-path.outputs.path }}
-- name: Debug
+- name: Show apk info
   run: |
     echo '${{ steps.apk-info.outputs.versionCode }}'
     echo '${{ steps.apk-info.outputs.versionName }}'
