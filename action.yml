@@ -16,6 +16,8 @@ outputs:
     description: 'apk applicationId'
   name:
     description: 'apk name'
+  result:
+    description: 'result'
 runs:
   using: 'node12'
   main: 'dist/index.js'
