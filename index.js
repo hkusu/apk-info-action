@@ -1,51 +1,26 @@
 const core = require('@actions/core');
-const wait = require('./wait');
+const ApkParser = require('app-info-parser');
 
-const AppInfoParser = require('app-info-parser');
-
-
-// most @actions toolkit packages have async methods
 async function run() {
   try { 
-/*
-    const ms = core.getInput('milliseconds');
-    console.log(`Waiting ${ms} milliseconds ...`)
-
-    core.debug((new Date()).toTimeString())
-    await wait(parseInt(ms));
-    core.debug((new Date()).toTimeString())
-
-    core.setOutput('time', new Date().toTimeString());
-*/
-
     const apkPath = core.getInput('apkPath');
 
-    console.log(apkPath);
+    const parser = new ApkParser('./app-debug.apk');
 
-    const parser = new AppInfoParser(apkPath);// or xxx.ipa
-/*
-    parser.parse().then(result => {
-
-        core.setOutput("versionCode", result.versionCode);
-        core.setOutput("versionNum", result.versionName);
-        core.setOutput("applicationId", result.package);
-        core.setOutput("name", result.application.label);
-        console.log('app info ----> ', result);
-
-    }).catch(err => {
-        console.log('err ----> ', err)
-    });
-*/
     const result = await parser.parse();
 
     core.setOutput("versionCode", result.versionCode);
-    core.setOutput("versionNum", result.versionName);
-    core.setOutput("applicationId", result.package);
-    core.setOutput("name", result.application.label);
-
-    core.setOutput("result", result);
-
-
+    core.setOutput("versionName", result.versionName);
+    core.setOutput("compileSdkVersion", result.compileSdkVersion);
+    core.setOutput("compileSdkVersionCodename", result.compileSdkVersionCodename);
+    core.setOutput("package", result.package);
+    core.setOutput("usesPermissions", JSON.stringify(result.usesPermissions.map(item => item.name)));
+    core.setOutput("minSdkVersion", result.usesSdk.minSdkVersion);
+    core.setOutput("targetSdkVersion", result.usesSdk.targetSdkVersion);
+    core.setOutput("label", result.application.label);
+    core.setOutput("debuggable", result.application.debuggable);
+    core.setOutput("allowBackup", result.application.allowBackup);
+    core.setOutput("supportsRtl", result.application.supportsRtl);
   }
   catch (error) {
     core.setFailed(error.message);

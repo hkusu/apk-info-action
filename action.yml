@@ -1,23 +1,35 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: 'apk info action'
+description: 'Get apk information'
 inputs:
-  apkPath:  # id of input
-    description: 'number of milliseconds to wait'
+  apkPath:
+    description: 'apk path'
     required: true
     default: ''
 outputs:
-#  time: # output will be available to future steps
-#    description: 'The message to output'
   versionCode:
-    description: 'apk versionCode'
-  versionNum:
-    description: 'apk versionNum'
-  applicationId:
-    description: 'apk applicationId'
-  name:
-    description: 'apk name'
-  result:
-    description: 'result'
+    description: 'versionCode'
+  versionName:
+    description: 'versionName'
+  compileSdkVersion:
+    description: 'compileSdkVersion'
+  compileSdkVersionCodename:
+    description: 'compileSdkVersionCodename'
+  package:
+    description: 'package'
+  usesPermissions:
+    description: 'usesPermissions'
+  minSdkVersion:
+    description: 'minSdkVersion'
+  targetSdkVersion:
+    description: 'targetSdkVersion'
+  label:
+    description: 'label'
+  debuggable:
+    description: 'debuggable'
+  allowBackup:
+    description: 'allowBackup'
+  supportsRtl:
+    description: 'supportsRtl'
 runs:
   using: 'node12'
   main: 'dist/index.js'
