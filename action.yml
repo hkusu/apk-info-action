@@ -1,13 +1,21 @@
 name: 'Wait'
 description: 'Wait a designated number of milliseconds'
 inputs:
-  milliseconds:  # id of input
+  apkPath:  # id of input
     description: 'number of milliseconds to wait'
     required: true
-    default: '1000'
+    default: ''
 outputs:
-  time: # output will be available to future steps 
-    description: 'The message to output'
+#  time: # output will be available to future steps
+#    description: 'The message to output'
+  versionCode:
+    description: 'apk versionCode'
+  versionNum:
+    description: 'apk versionNum'
+  applicationId:
+    description: 'apk applicationId'
+  name:
+    description: 'apk name'
 runs:
   using: 'node12'
   main: 'dist/index.js'
