@@ -30,20 +30,19 @@ See Useage.
     echo "::set-output name=path::$path"
 - name: Get apk info
   id: apk-info
-  uses: hkusu/apk-info-action@v0.1.0
+  uses: hkusu/apk-info-action@v0.2.0
   with:
     apkPath: ${{ steps.apk-path.outputs.path }}
 - name: Show apk info
   run: |
+    echo '${{ steps.apk-info.outputs.applicationLabel }}'
+    echo '${{ steps.apk-info.outputs.applicationId }}'
     echo '${{ steps.apk-info.outputs.versionCode }}'
     echo '${{ steps.apk-info.outputs.versionName }}'
-    echo '${{ steps.apk-info.outputs.compileSdkVersion }}'
-    echo '${{ steps.apk-info.outputs.compileSdkVersionCodename }}'
-    echo '${{ steps.apk-info.outputs.packageName }}'
-    echo '${{ steps.apk-info.outputs.usesPermissions }}'
     echo '${{ steps.apk-info.outputs.minSdkVersion }}'
     echo '${{ steps.apk-info.outputs.targetSdkVersion }}'
-    echo '${{ steps.apk-info.outputs.applicationLabel }}'
+    echo '${{ steps.apk-info.outputs.compileSdkVersion }}'
+    echo '${{ steps.apk-info.outputs.usesPermissions }}'
     echo '${{ steps.apk-info.outputs.debuggable }}'
     echo '${{ steps.apk-info.outputs.allowBackup }}'
     echo '${{ steps.apk-info.outputs.supportsRtl }}'

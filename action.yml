@@ -4,26 +4,23 @@ inputs:
   apkPath:
     description: 'apk path'
     required: true
-    default: ''
 outputs:
+  applicationLabel:
+    description: 'applicationLabel'
+  packageName:
+    description: 'applicationId'
   versionCode:
     description: 'versionCode'
   versionName:
     description: 'versionName'
-  compileSdkVersion:
-    description: 'compileSdkVersion'
-  compileSdkVersionCodename:
-    description: 'compileSdkVersionCodename'
-  packageName:
-    description: 'packageName'
-  usesPermissions:
-    description: 'usesPermissions'
   minSdkVersion:
     description: 'minSdkVersion'
   targetSdkVersion:
     description: 'targetSdkVersion'
-  applicationLabel:
-    description: 'applicationLabel'
+  compileSdkVersion:
+    description: 'compileSdkVersion'
+  usesPermissions:
+    description: 'usesPermissions'
   debuggable:
     description: 'debuggable'
   allowBackup:

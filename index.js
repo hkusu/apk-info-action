@@ -7,15 +7,14 @@ async function run() {
     const parser = new ApkParser(apkPath);
     const result = await parser.parse();
 
+    core.setOutput("applicationLabel", result.application.label);
+    core.setOutput("applicationId", result.package);
     core.setOutput("versionCode", result.versionCode);
     core.setOutput("versionName", result.versionName);
-    core.setOutput("compileSdkVersion", result.compileSdkVersion);
-    core.setOutput("compileSdkVersionCodename", result.compileSdkVersionCodename);
-    core.setOutput("packageName", result.package);
-    core.setOutput("usesPermissions", JSON.stringify(result.usesPermissions.map(item => item.name)));
     core.setOutput("minSdkVersion", result.usesSdk.minSdkVersion);
     core.setOutput("targetSdkVersion", result.usesSdk.targetSdkVersion);
-    core.setOutput("applicationLabel", result.application.label);
+    core.setOutput("compileSdkVersion", result.compileSdkVersion);
+    core.setOutput("usesPermissions", JSON.stringify(result.usesPermissions.map(item => item.name)));
     core.setOutput("debuggable", result.application.debuggable);
     core.setOutput("allowBackup", result.application.allowBackup);
     core.setOutput("supportsRtl", result.application.supportsRtl);
