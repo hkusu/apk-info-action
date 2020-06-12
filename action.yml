@@ -1,5 +1,8 @@
 name: 'apk info action'
 description: 'Get apk information'
+branding:
+  icon: 'info'
+  color: 'white'
 inputs:
   apkPath:
     description: 'apk path'
