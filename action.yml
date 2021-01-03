@@ -1,35 +1,42 @@
-name: 'apk info action'
-description: 'Get apk information'
+name: 'Apk Info Action'
+description: 'This GitHub Actions gets information of Android apk file.'
+author: 'Hiroyuki Kusu'
 branding:
   icon: 'info'
   color: 'white'
 inputs:
-  apkPath:
-    description: 'apk path'
+  apk-path:
+    description: ''
     required: true
 outputs:
-  applicationLabel:
-    description: 'applicationLabel'
-  packageName:
-    description: 'applicationId'
-  versionCode:
-    description: 'versionCode'
-  versionName:
-    description: 'versionName'
-  minSdkVersion:
-    description: 'minSdkVersion'
-  targetSdkVersion:
-    description: 'targetSdkVersion'
-  compileSdkVersion:
-    description: 'compileSdkVersion'
-  usesPermissions:
-    description: 'usesPermissions'
+  application-name:
+    description: ''
+  application-id:
+    description: ''
+  version-code:
+    description: ''
+  version-name:
+    description: ''
+  min-sdk-version:
+    description: ''
+  target-sdk-version:
+    description: ''
+  compile-sdk-version:
+    description: ''
+  uses-permissions:
+    description: ''
   debuggable:
-    description: 'debuggable'
-  allowBackup:
-    description: 'allowBackup'
-  supportsRtl:
-    description: 'supportsRtl'
+    description: ''
+  allow-backup:
+    description: ''
+  supports-rtl:
+    description: ''
+  file-size:
+    description: ''
+  readable-file-size:
+    description: ''
+  result:
+    description: '`success` or `failure` is set.'
 runs:
   using: 'node12'
   main: 'dist/index.js'
