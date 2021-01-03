@@ -27,19 +27,19 @@ Specify the path of the apk file to `apk-path` input, eg `app/build/outputs/apk/
     apk-path: ${{ steps.apk-path.outputs.path }}
 - name: Show apk info
   run: |
-    echo '${{ steps.apk-info.outputs.applicationLabel }}'
-    echo '${{ steps.apk-info.outputs.applicationId }}'
-    echo '${{ steps.apk-info.outputs.versionCode }}'
-    echo '${{ steps.apk-info.outputs.versionName }}'
-    echo '${{ steps.apk-info.outputs.minSdkVersion }}'
-    echo '${{ steps.apk-info.outputs.targetSdkVersion }}'
-    echo '${{ steps.apk-info.outputs.compileSdkVersion }}'
-    echo '${{ steps.apk-info.outputs.usesPermissions }}'
+    echo '${{ steps.apk-info.outputs.application-name }}'
+    echo '${{ steps.apk-info.outputs.application-id }}'
+    echo '${{ steps.apk-info.outputs.version-code }}'
+    echo '${{ steps.apk-info.outputs.version-name }}'
+    echo '${{ steps.apk-info.outputs.min-sdk-version }}'
+    echo '${{ steps.apk-info.outputs.target-sdk-version }}'
+    echo '${{ steps.apk-info.outputs.compile-sdk-version }}'
+    echo '${{ steps.apk-info.outputs.uses-permissions }}'
     echo '${{ steps.apk-info.outputs.debuggable }}'
-    echo '${{ steps.apk-info.outputs.allowBackup }}'
-    echo '${{ steps.apk-info.outputs.supportsRtl }}'
-    echo '${{ steps.apk-info.outputs.fileSize }}'
-    echo '${{ steps.apk-info.outputs.readableFileSize }}'
+    echo '${{ steps.apk-info.outputs.allow-backup }}'
+    echo '${{ steps.apk-info.outputs.supports-rtl }}'
+    echo '${{ steps.apk-info.outputs.file-size }}'
+    echo '${{ steps.apk-info.outputs.readable-file-size }}'
 ```
 
 ### Result of action

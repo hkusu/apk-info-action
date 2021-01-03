@@ -9,31 +9,31 @@ inputs:
     description: ''
     required: true
 outputs:
-  applicationLabel:
+  application-name:
     description: ''
-  packageName:
+  application-id:
     description: ''
-  versionCode:
+  version-code:
     description: ''
-  versionName:
+  version-name:
     description: ''
-  minSdkVersion:
+  min-sdk-version:
     description: ''
-  targetSdkVersion:
+  target-sdk-version:
     description: ''
-  compileSdkVersion:
+  compile-sdk-version:
     description: ''
-  usesPermissions:
+  uses-permissions:
     description: ''
   debuggable:
     description: ''
-  allowBackup:
+  allow-backup:
     description: ''
-  supportsRtl:
+  supports-rtl:
     description: ''
-  fileSize:
+  file-size:
     description: ''
-  readableFileSize:
+  readable-file-size:
     description: ''
   result:
     description: '`success` or `failure` is set.'
