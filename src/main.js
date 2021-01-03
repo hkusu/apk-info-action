@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const ApkParser = require('app-info-parser');
+const fs = require('fs');
 
 const NODE_ENV = process.env['NODE_ENV'];
 
@@ -29,6 +30,25 @@ async function run(input) {
   core.setOutput("debuggable", result.application.debuggable);
   core.setOutput("allowBackup", result.application.allowBackup);
   core.setOutput("supportsRtl", result.application.supportsRtl);
+
+  const fileSize = fs.statSync(input.apkPath).size;
+  core.setOutput("fileSize", fileSize);
+
+  if (1024 * 1024 * 1024 <= fileSize) {
+    let gSize = fileSize / (1024 * 1024 * 1024);
+    gSize = Math.floor(gSize * 10) / 10; // 小数第二位以下は切り捨て
+    core.setOutput("readableFileSize", gSize.toLocaleString() + 'GB');
+  } else if (1024 * 1024 <= fileSize) {
+    let mSize = fileSize / (1024 * 1024);
+    mSize = Math.floor(mSize * 10) / 10; // 小数第二位以下は切り捨て
+    core.setOutput("readableFileSize", mSize.toLocaleString() + 'MB');
+  } else if (1024 <= fileSize) {
+    let kSize = fileSize / 1024;
+    kSize = Math.floor(kSize); // 小数第以下は切り捨て
+    core.setOutput("readableFileSize", kSize.toLocaleString() + 'KB');
+  } else {
+    core.setOutput("readableFileSize", fileSize.toLocaleString() + 'B');
+  }
 }
 
 run(input)

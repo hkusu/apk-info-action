@@ -38,6 +38,8 @@ Specify the path of the apk file to `apk-path` input, eg `app/build/outputs/apk/
     echo '${{ steps.apk-info.outputs.debuggable }}'
     echo '${{ steps.apk-info.outputs.allowBackup }}'
     echo '${{ steps.apk-info.outputs.supportsRtl }}'
+    echo '${{ steps.apk-info.outputs.fileSize }}'
+    echo '${{ steps.apk-info.outputs.readableFileSize }}'
 ```
 
 ### Result of action

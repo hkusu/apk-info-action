@@ -31,6 +31,10 @@ outputs:
     description: ''
   supportsRtl:
     description: ''
+  fileSize:
+    description: ''
+  readableFileSize:
+    description: ''
   result:
     description: '`success` or `failure` is set.'
 runs:
