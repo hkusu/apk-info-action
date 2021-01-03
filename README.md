@@ -1,4 +1,4 @@
-# apk info action
+# Apk Info Action
 
 This GitHub Actions gets information of Android apk file.
 
