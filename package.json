@@ -1,11 +1,21 @@
 {
   "name": "apk-info-action",
-  "version": "0.2.0",
-  "description": "",
-  "private": true,
-  "main": "index.js",
+  "version": "1.0.0",
+  "description": "This GitHub Actions gets information of Android apk file.",
+  "main": "src/main.js",
+  "author": "Hiroyuki Kusu <kusu0806@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hkusu/apk-info-action.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hkusu/apk-info-action/issues"
+  },
+  "homepage": "https://github.com/hkusu/apk-info-action#readme",
   "scripts": {
-    "package": "ncc build index.js -o dist"
+    "local": "NODE_ENV=local node src/main.js",
+    "package": "ncc build src/main.js -o dist"
   },
   "dependencies": {
     "@actions/core": "^1.2.6",

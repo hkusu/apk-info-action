@@ -34,7 +34,7 @@ module.exports =
 /******/ 	// the startup function
 /******/ 	function startup() {
 /******/ 		// Load entry module and return exports
-/******/ 		return __webpack_require__(104);
+/******/ 		return __webpack_require__(31);
 /******/ 	};
 /******/ 	// initialize runtime
 /******/ 	runtime(__webpack_require__);
@@ -96,6 +96,40 @@ module.exports =
 
 
 module.exports = __webpack_require__(339).default;
+
+
+/***/ }),
+
+/***/ 31:
+/***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
+
+const core = __webpack_require__(470);
+const ApkParser = __webpack_require__(795);
+
+async function run() {
+  try { 
+    const apkPath = core.getInput('apk-path', { required: true });
+    const parser = new ApkParser(apkPath);
+    const result = await parser.parse();
+
+    core.setOutput("applicationLabel", result.application.label);
+    core.setOutput("applicationId", result.package);
+    core.setOutput("versionCode", result.versionCode);
+    core.setOutput("versionName", result.versionName);
+    core.setOutput("minSdkVersion", result.usesSdk.minSdkVersion);
+    core.setOutput("targetSdkVersion", result.usesSdk.targetSdkVersion);
+    core.setOutput("compileSdkVersion", result.compileSdkVersion);
+    core.setOutput("usesPermissions", JSON.stringify(result.usesPermissions.map(item => item.name)));
+    core.setOutput("debuggable", result.application.debuggable);
+    core.setOutput("allowBackup", result.application.allowBackup);
+    core.setOutput("supportsRtl", result.application.supportsRtl);
+  }
+  catch (error) {
+    core.setFailed(error.message);
+  }
+}
+
+run()
 
 
 /***/ }),
@@ -389,40 +423,6 @@ var crc32 = (0, _define_crc2.default)('crc-32', function (buf, previous) {
 });
 
 exports.default = crc32;
-
-
-/***/ }),
-
-/***/ 104:
-/***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
-
-const core = __webpack_require__(470);
-const ApkParser = __webpack_require__(795);
-
-async function run() {
-  try { 
-    const apkPath = core.getInput('apkPath');
-    const parser = new ApkParser(apkPath);
-    const result = await parser.parse();
-
-    core.setOutput("applicationLabel", result.application.label);
-    core.setOutput("applicationId", result.package);
-    core.setOutput("versionCode", result.versionCode);
-    core.setOutput("versionName", result.versionName);
-    core.setOutput("minSdkVersion", result.usesSdk.minSdkVersion);
-    core.setOutput("targetSdkVersion", result.usesSdk.targetSdkVersion);
-    core.setOutput("compileSdkVersion", result.compileSdkVersion);
-    core.setOutput("usesPermissions", JSON.stringify(result.usesPermissions.map(item => item.name)));
-    core.setOutput("debuggable", result.application.debuggable);
-    core.setOutput("allowBackup", result.application.allowBackup);
-    core.setOutput("supportsRtl", result.application.supportsRtl);
-  }
-  catch (error) {
-    core.setFailed(error.message);
-  }
-}
-
-run()
 
 
 /***/ }),

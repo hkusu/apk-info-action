@@ -1,5 +1,5 @@
 name: 'apk info action'
-description: 'Get apk information'
+description: 'This GitHub Actions gets information of Android apk file.'
 branding:
   icon: 'info'
   color: 'white'

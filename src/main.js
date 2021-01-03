@@ -3,7 +3,7 @@ const ApkParser = require('app-info-parser');
 
 async function run() {
   try { 
-    const apkPath = core.getInput('apkPath');
+    const apkPath = core.getInput('apk-path', { required: true });
     const parser = new ApkParser(apkPath);
     const result = await parser.parse();
 
