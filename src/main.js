@@ -19,7 +19,7 @@ async function run(input) {
   const parser = new ApkParser(input.apkPath);
   const result = await parser.parse();
 
-  core.setOutput("application-name", result.application.label);
+  core.setOutput("application-name", result.application.label[0]);
   core.setOutput("application-id", result.package);
   core.setOutput("version-code", result.versionCode);
   core.setOutput("version-name", result.versionName);
