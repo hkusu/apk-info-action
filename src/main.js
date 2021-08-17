@@ -1,35 +1,45 @@
 const core = require('@actions/core');
 const ApkParser = require('app-info-parser');
 const fs = require('fs');
-
+const rm = require('node-aab-parser');
 const NODE_ENV = process.env['NODE_ENV'];
 
 let input;
-if (NODE_ENV != 'local') {
+if (NODE_ENV !== 'local') {
   input = {
     apkPath: core.getInput('apk-path', { required: true }),
   };
 } else {
   input = {
-    apkPath: './app-debug.apk',
+    apkPath: __dirname + '\\..\\app-release.aab',
   };
 }
 
 async function run(input) {
-  const parser = new ApkParser(input.apkPath);
-  const result = await parser.parse();
+  let result;
+  const isAab = input.apkPath.indexOf(".aab") > -1;
+  if (isAab) {
+    result = await rm.readManifest(input.apkPath);
+    core.setOutput("version-code", result.versionCode);
+    core.setOutput("version-name", result.verionName);
+    core.setOutput("compile-sdk-version", result.compiledSdkVersion);
+    core.setOutput("application-id", result.packageName);
+  } else {
+    const parser = new ApkParser(input.apkPath);
+    result = await parser.parse();
 
-  core.setOutput("application-name", result.application.label[0]);
-  core.setOutput("application-id", result.package);
-  core.setOutput("version-code", result.versionCode);
-  core.setOutput("version-name", result.versionName);
-  core.setOutput("min-sdk-version", result.usesSdk.minSdkVersion);
-  core.setOutput("target-sdk-version", result.usesSdk.targetSdkVersion);
-  core.setOutput("compile-sdk-version", result.compileSdkVersion);
-  core.setOutput("uses-permissions", JSON.stringify(result.usesPermissions.map(item => item.name)));
-  core.setOutput("debuggable", result.application.debuggable);
-  core.setOutput("allow-backup", result.application.allowBackup);
-  core.setOutput("supports-rtl", result.application.supportsRtl);
+    core.setOutput("application-name", result.application.label[0]);
+    core.setOutput("application-id", result.package);
+    core.setOutput("version-code", result.versionCode);
+    core.setOutput("version-name", result.versionName);
+    core.setOutput("min-sdk-version", result.usesSdk.minSdkVersion);
+    core.setOutput("target-sdk-version", result.usesSdk.targetSdkVersion);
+    core.setOutput("compile-sdk-version", result.compileSdkVersion);
+    core.setOutput("uses-permissions", JSON.stringify(result.usesPermissions.map(item => item.name)));
+    core.setOutput("debuggable", result.application.debuggable);
+    core.setOutput("allow-backup", result.application.allowBackup);
+    core.setOutput("supports-rtl", result.application.supportsRtl);
+  }
 
   const fileSize = fs.statSync(input.apkPath).size;
   core.setOutput("file-size", fileSize);

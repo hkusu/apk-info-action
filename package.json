@@ -19,7 +19,8 @@
   },
   "dependencies": {
     "@actions/core": "^1.2.6",
-    "app-info-parser": "^0.3.10"
+    "app-info-parser": "^0.3.10",
+    "node-aab-parser": "^1.0.1"
   },
   "devDependencies": {
     "@zeit/ncc": "^0.20.5"
