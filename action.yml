@@ -1,4 +1,4 @@
-name: 'Apk Info Action'
+name: 'Apk Info Action for ab'
 description: 'This GitHub Actions gets information of Android apk file.'
 author: 'Hiroyuki Kusu'
 branding:
