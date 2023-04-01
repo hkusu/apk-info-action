@@ -22,7 +22,7 @@ Specify the path of the apk file to `apk-path` input, eg `app/build/outputs/apk/
     echo "::set-output name=path::$path"
 - name: Get apk info
   id: apk-info
-  uses: hkusu/apk-info-action@v1
+  uses: zhaobozhen/apk-info-action@v1
   with:
     apk-path: ${{ steps.apk-path.outputs.path }}
 - name: Show apk info
@@ -47,7 +47,7 @@ Specify the path of the apk file to `apk-path` input, eg `app/build/outputs/apk/
 Use `result` outputs.
 
 ```yaml
-- uses: hkusu/apk-info-action@v1
+- uses: zhaobozhen/apk-info-action@v1
   id: apk-info
   with:
     apk-path: 'app/build/outputs/apk/release/app-release.apk'
