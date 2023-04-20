@@ -1,6 +1,6 @@
 {
   "name": "apk-info-action",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "This GitHub Actions gets information of Android apk file.",
   "main": "src/main.js",
   "author": "Hiroyuki Kusu <kusu0806@gmail.com>",
@@ -22,6 +22,6 @@
     "app-info-parser": "^1.1.2"
   },
   "devDependencies": {
-    "@zeit/ncc": "^0.36.1"
+    "@vercel/ncc": "^0.36.1"
   }
 }
