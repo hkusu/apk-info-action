@@ -44,7 +44,7 @@ jobs:
           cache: 'gradle'
       - name: Build with Gradle
         working-directory: ./android
-        run: ./gradlew bundleRelease
+        run: ./gradlew assembleDebug
       - name: Get APK file path
         id: apk-path
         working-directory: ./android
