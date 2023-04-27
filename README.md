@@ -8,18 +8,17 @@ Specify the path of the apk file to `apk-path` input, eg `app/build/outputs/apk/
 
 ```yaml
 - name: Check out
-  uses: actions/checkout@v2
+  uses: actions/checkout@v3
 - name: Set up JDK
-  uses: actions/setup-java@v1
+  uses: actions/setup-java@v3
   with:
-    java-version: 1.8
+    distribution: 'zulu'
+    java-version: 11
 - name: Build with Gradle
   run: ./gradlew assembleRelease
 - name: Get apk path
   id: apk-path
-  run: |
-    path=$(find **/build/outputs/apk -name '*.apk' -type f | head -1)
-    echo "::set-output name=path::$path"
+  run: echo "path=$(find . -regex '^./build/outputs/apk/.\.apk$' -type f | head -1)" >> $GITHUB_OUTPUT
 - name: Get apk info
   id: apk-info
   uses: hkusu/apk-info-action@v1
