@@ -5,7 +5,7 @@ const fs = require('fs');
 const NODE_ENV = process.env['NODE_ENV'];
 
 let input;
-if (NODE_ENV != 'local') {
+if (NODE_ENV != 'development') {
   input = {
     apkPath: core.getInput('apk-path', { required: true }),
   };
