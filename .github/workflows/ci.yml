@@ -48,9 +48,7 @@ jobs:
       - name: Get APK file path
         id: apk-path
         working-directory: ./android
-        run: |
-          find . -regex '^.*/build/outputs/apk/.*\.apk$' -type f | head -1
-          echo "path=$(find . -regex '^.*/build/outputs/apk/.*\.apk$' -type f | head -1)" >> $GITHUB_OUTPUT
+        run: echo "path=$(find . -regex '^.*/build/outputs/apk/.*\.apk$' -type f | head -1)" >> $GITHUB_OUTPUT
       - name: Use this action
         id: apk-info
         uses: ./action/
