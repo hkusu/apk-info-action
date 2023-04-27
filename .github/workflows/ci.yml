@@ -1,0 +1,25 @@
+name: CI
+
+on: push
+
+jobs:
+  run-tasks:
+    name: Run npm tasks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Run tasks
+        run: |
+          npm ci
+          npm run check
+      - name: Check dist directory for no changes # Check if dist/index.js commit is missing
+        run: |
+          if [ "$(git diff --ignore-space-at-eol dist/ | wc -l)" != '0' ]; then
+            echo 'Changes detected.'
+            exit 1
+          fi

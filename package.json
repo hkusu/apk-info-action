@@ -1,6 +1,6 @@
 {
   "name": "apk-info-action",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This GitHub Actions gets information of Android apk file.",
   "main": "src/main.js",
   "author": "Hiroyuki Kusu <kusu0806@gmail.com>",
@@ -14,14 +14,17 @@
   },
   "homepage": "https://github.com/hkusu/apk-info-action#readme",
   "scripts": {
-    "local": "NODE_ENV=local node src/main.js",
-    "package": "ncc build src/main.js -o dist"
+    "lint": "eslint .",
+    "package": "ncc build src/main.js -o dist --source-map --license licenses.txt",
+    "check": "npm run lint && npm run package",
+    "dev": "NODE_ENV=development node src/main.js"
   },
   "dependencies": {
-    "@actions/core": "^1.2.6",
+    "@actions/core": "^1.10.0",
     "app-info-parser": "^0.3.10"
   },
   "devDependencies": {
-    "@zeit/ncc": "^0.20.5"
+    "@vercel/ncc": "^0.36.1",
+    "eslint": "^8.39.0"
   }
 }
