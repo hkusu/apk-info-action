@@ -23,3 +23,49 @@ jobs:
             echo 'Changes detected.'
             exit 1
           fi
+  use-action:
+    name: Use this action for check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out this repository
+        uses: actions/checkout@v3
+        with:
+          path: action
+      - name: Check out Android project
+        uses: actions/checkout@v3
+        with:
+          repository: 'hkusu/ArchitectureSampleApp'
+          path: android
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 11
+          cache: 'gradle'
+      - name: Build with Gradle
+        working-directory: ./android
+        run: ./gradlew assembleDebug
+      - name: Get APK file path
+        id: apk-path
+        working-directory: ./android
+        run: echo "path=$(find . -regex '^.*/build/outputs/apk/.*\.apk$' -type f | head -1)" >> $GITHUB_OUTPUT
+      - name: Use this action
+        id: apk-info
+        uses: ./action/
+        with:
+          apk-path: android/${{ steps.apk-path.outputs.path }}
+      - name: Show result
+        run: |
+          echo '${{ steps.apk-info.outputs.application-name }}'
+          echo '${{ steps.apk-info.outputs.application-id }}'
+          echo '${{ steps.apk-info.outputs.version-code }}'
+          echo '${{ steps.apk-info.outputs.version-name }}'
+          echo '${{ steps.apk-info.outputs.min-sdk-version }}'
+          echo '${{ steps.apk-info.outputs.target-sdk-version }}'
+          echo '${{ steps.apk-info.outputs.compile-sdk-version }}'
+          echo '${{ steps.apk-info.outputs.uses-permissions }}'
+          echo '${{ steps.apk-info.outputs.debuggable }}'
+          echo '${{ steps.apk-info.outputs.allow-backup }}'
+          echo '${{ steps.apk-info.outputs.supports-rtl }}'
+          echo '${{ steps.apk-info.outputs.file-size }}'
+          echo '${{ steps.apk-info.outputs.readable-file-size }}'
