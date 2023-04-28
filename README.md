@@ -18,7 +18,7 @@ Specify the path of the apk file to `apk-path` input, eg `app/build/outputs/apk/
   run: ./gradlew assembleRelease
 - name: Get apk path
   id: apk-path
-  run: echo "path=$(find . -regex '^./build/outputs/apk/.\.apk$' -type f | head -1)" >> $GITHUB_OUTPUT
+  run: echo "path=$(find . -regex '^.*/build/outputs/apk/.*\.apk$' -type f | head -1)" >> $GITHUB_OUTPUT
 - name: Get apk info
   id: apk-info
   uses: hkusu/apk-info-action@v1
