@@ -1,4 +1,4 @@
-name: 'Apk Info Action'
+name: 'Apk Info Action for ab'
 description: 'This GitHub Actions gets information of Android apk file.'
 author: 'Hiroyuki Kusu'
 branding:
@@ -38,5 +38,5 @@ outputs:
   result:
     description: '`success` or `failure` is set.'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
